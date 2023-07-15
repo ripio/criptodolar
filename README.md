@@ -49,7 +49,7 @@ npx hardhat test
 After you've tested the contract, you can prepare it for deployment:
 
 ```bash
-npx hardhat run scripts/deploy.js --network <network-name>
+npx hardhat run scripts/deploy.ts --network <network-name>
 ```
 
 ## License
