@@ -9,19 +9,28 @@ async function main() {
     (await ethers.provider.getBalance(deployer.address)).toString()
   );
 
-  const ContractFactory = await ethers.getContractFactory("Criptodolar");
+  const Criptodolar = await ethers.getContractFactory("Criptodolar");
 
-  const instance = await upgrades.deployProxy(ContractFactory);
-  await instance.waitForDeployment();
+  const criptodolar = await upgrades.deployProxy(Criptodolar);
+  await criptodolar.waitForDeployment();
 
-  console.log(`Proxy deployed to ${await instance.getAddress()}`);
+  const criptodolarAddress = await criptodolar.getAddress();
+  console.log(`Proxy deployed to ${criptodolarAddress}`);
+
+  // get admin and implementation addresses from storage
+  const admin = await upgrades.admin.getInstance();
+  console.log(`Admin deployed to ${admin.target}`);
+  const tokenImplementation = await admin.getProxyImplementation(
+    criptodolarAddress
+  );
+  console.log(`Implementation deployed to ${tokenImplementation}`);
 
   const toMint = ethers.parseUnits("100", "ether");
   console.log("toMint", toMint.toString());
 
-  await instance.mint(deployer.address, toMint);
-  console.log("Token address:", await instance.getAddress());
-  const balance = await instance.balanceOf(deployer.address);
+  await criptodolar.mint(deployer.address, toMint);
+  console.log("Token address:", tokenImplementation);
+  const balance = await criptodolar.balanceOf(deployer.address);
   console.log("Token balance:", ethers.formatEther(balance.toString()));
 }
 
