@@ -1,5 +1,5 @@
-import { expect } from "chai";
-import { ethers, upgrades } from "hardhat";
+const { expect } = require("chai");
+const { ethers, upgrades } = require("hardhat");
 
 describe("Criptodolar", function () {
   it("Test contract", async function () {

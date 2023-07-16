@@ -1,13 +1,13 @@
-import { ethers, upgrades } from "hardhat";
+const { ethers, upgrades } = require("hardhat");
 
 async function main() {
   const [deployer] = await ethers.getSigners();
 
+  console.log("Deploying contracts with the account:", deployer.address);
   console.log(
-    "Deploying contracts with the account:",
-    deployer.address
+    "Account balance:",
+    (await ethers.provider.getBalance(deployer.address)).toString()
   );
-  console.log("Account balance:", (await ethers.provider.getBalance(deployer.address)).toString());
 
   const ContractFactory = await ethers.getContractFactory("Criptodolar");
 
@@ -16,10 +16,9 @@ async function main() {
 
   console.log(`Proxy deployed to ${await instance.getAddress()}`);
 
-
-  const toMint = ethers.parseUnits('100', 'ether');
+  const toMint = ethers.parseUnits("100", "ether");
   console.log("toMint", toMint.toString());
-  
+
   await instance.mint(deployer.address, toMint);
   console.log("Token address:", await instance.getAddress());
   const balance = await instance.balanceOf(deployer.address);
@@ -32,4 +31,3 @@ main().catch((error) => {
   console.error(error);
   process.exitCode = 1;
 });
-
