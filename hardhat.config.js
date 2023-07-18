@@ -1,6 +1,8 @@
 require("@nomicfoundation/hardhat-toolbox");
 require("@openzeppelin/hardhat-upgrades");
 require("dotenv-defaults").config();
+require("@nomicfoundation/hardhat-ledger");
+require("./tasks/ledger-deploy-contracts");
 
 const LACHAIN_RPC_URL = process.env.LACHAIN_RPC_URL;
 const PRIVATE_KEYS_LACHAIN = process.env.PRIVATE_KEYS_LACHAIN;
@@ -9,11 +11,15 @@ const LACHAIN_TESTNET_RPC_URL = process.env.LACHAIN_TESTNET_RPC_URL;
 const LACHAIN_TESTNET_EXPLORER_URL = process.env.LACHAIN_TESTNET_EXPLORER_URL;
 const PRIVATE_KEYS_LATESTNET = process.env.PRIVATE_KEYS_LATESTNET;
 const ETHERSCAN_KEY = process.env.ETHERSCAN_KEY;
+const LEDGER_ACCOUNT = process.env.LEDGER_ACCOUNT;
 
 /** @type import('hardhat/config').HardhatUserConfig */
 module.exports = {
   defaultNetwork: "hardhat",
   networks: {
+    hardhat: {
+      ledgerAccounts: [LEDGER_ACCOUNT],
+    },
     lachain: {
       url: LACHAIN_RPC_URL,
       accounts: PRIVATE_KEYS_LACHAIN.split(","),

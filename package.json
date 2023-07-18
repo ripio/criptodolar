@@ -9,6 +9,7 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
+    "@nomicfoundation/hardhat-ledger": "^1.0.0",
     "@nomicfoundation/hardhat-toolbox": "^3.0.0",
     "@openzeppelin/contracts-upgradeable": "^4.8.3",
     "@openzeppelin/hardhat-upgrades": "^2.0.0",
