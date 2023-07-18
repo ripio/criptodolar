@@ -12,6 +12,7 @@ const LACHAIN_TESTNET_EXPLORER_URL = process.env.LACHAIN_TESTNET_EXPLORER_URL;
 const PRIVATE_KEYS_LATESTNET = process.env.PRIVATE_KEYS_LATESTNET;
 const ETHERSCAN_KEY = process.env.ETHERSCAN_KEY;
 const LEDGER_ACCOUNT = process.env.LEDGER_ACCOUNT;
+const USE_LEDGER = process.env.USE_LEDGER;
 
 /** @type import('hardhat/config').HardhatUserConfig */
 module.exports = {
@@ -22,15 +23,17 @@ module.exports = {
     },
     lachain: {
       url: LACHAIN_RPC_URL,
-      accounts: PRIVATE_KEYS_LACHAIN.split(","),
+      accounts: USE_LEDGER ? "remote" : PRIVATE_KEYS_LACHAIN.split(","),
       chainId: 274,
       gasPrice: 10000000,
+      ledgerAccounts: [LEDGER_ACCOUNT],
     },
     latestnet: {
       url: LACHAIN_TESTNET_RPC_URL,
-      accounts: PRIVATE_KEYS_LATESTNET.split(","),
+      accounts: USE_LEDGER ? "remote" : PRIVATE_KEYS_LATESTNET.split(","),
       chainId: 418,
       gasPrice: 10000000,
+      ledgerAccounts: [LEDGER_ACCOUNT],
     },
   },
   etherscan: {
