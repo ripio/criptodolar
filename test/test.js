@@ -2,11 +2,11 @@ const { expect } = require("chai");
 const { ethers, upgrades } = require("hardhat");
 
 describe("Criptodolar", function () {
-  let Criptodolar, criptodolar, owner, addr1, addr2;
+  let criptodolar, owner, addr1, addr2;
 
   beforeEach(async function () {
     [owner, addr1, addr2, _] = await ethers.getSigners();
-    Criptodolar = await ethers.getContractFactory("Criptodolar");
+    const Criptodolar = await ethers.getContractFactory("Criptodolar");
     criptodolar = await upgrades.deployProxy(Criptodolar, [], {
       initializer: "initialize",
     });
