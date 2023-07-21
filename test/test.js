@@ -16,7 +16,7 @@ describe("Criptodolar", function () {
   // Contract Deployment
   it("Should deploy successfully", async function () {
     expect(await criptodolar.target).to.exist;
-    expect(await criptodolar.name()).to.equal("Criptodolar");
+    expect(await criptodolar.name()).to.equal("Criptodolar UXD");
     expect(await criptodolar.symbol()).to.equal("UXD");
     expect(await criptodolar.decimals()).to.equal(18);
     expect(await criptodolar.totalSupply()).to.equal(0);
@@ -101,7 +101,7 @@ describe("Criptodolar", function () {
     };
 
     const domain = {
-      name: await criptodolar.name(),
+      name: "Criptodolar",
       version: "1",
       chainId: (await ethers.provider.getNetwork()).chainId,
       verifyingContract: criptodolar.target,
