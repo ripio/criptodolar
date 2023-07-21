@@ -18,7 +18,7 @@ module.exports = {
       url: LACHAIN_RPC_URL,
       accounts: PRIVATE_KEYS_LACHAIN.split(","),
       chainId: 274,
-      gasPrice: 10000000,
+      gasPrice: 5000000000000,
     },
     latestnet: {
       url: LACHAIN_TESTNET_RPC_URL,
