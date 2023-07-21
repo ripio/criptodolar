@@ -19,7 +19,7 @@ contract Criptodolar is Initializable, ERC20Upgradeable, ERC20BurnableUpgradeabl
     }
 
     function initialize() initializer public {
-        __ERC20_init("Criptodolar", "UXD");
+        __ERC20_init("Criptodolar UXD", "UXD");
         __ERC20Burnable_init();
         __Pausable_init();
         __AccessControl_init();
