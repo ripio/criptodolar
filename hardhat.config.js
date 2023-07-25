@@ -1,6 +1,7 @@
 require("@nomicfoundation/hardhat-toolbox");
 require("@openzeppelin/hardhat-upgrades");
 require("dotenv-defaults").config();
+require("./tasks/transfer-ownership-admin");
 
 const LACHAIN_RPC_URL = process.env.LACHAIN_RPC_URL;
 const PRIVATE_KEYS_LACHAIN = process.env.PRIVATE_KEYS_LACHAIN;
