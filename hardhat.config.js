@@ -9,6 +9,7 @@ const LATESTNET_RPC_URL = process.env.LATESTNET_RPC_URL;
 const LATESTNET_EXPLORER_URL = process.env.LATESTNET_EXPLORER_URL;
 const ETHEREUM_RPC_URL = process.env.ETHEREUM_RPC_URL;
 const ETHERSCAN_KEY = process.env.ETHERSCAN_KEY;
+const POLYGON_RPC_URL = process.env.POLYGON_RPC_URL;
 const PRIVATE_KEYS = process.env.PRIVATE_KEYS;
 
 /** @type import('hardhat/config').HardhatUserConfig */
@@ -33,12 +34,19 @@ module.exports = {
       chainId: 1,
       gasPrice: 25000000000,
     },
+    polygon: {
+      url: POLYGON_RPC_URL,
+      accounts: PRIVATE_KEYS.split(","),
+      chainId: 137,
+      gasPrice: 50000000000,
+    },
   },
   etherscan: {
     apiKey: {
       lachain: ETHERSCAN_KEY,
       latestnet: ETHERSCAN_KEY,
       ethereum: ETHERSCAN_KEY,
+      polygon: ETHERSCAN_KEY,
     },
     customChains: [
       {
