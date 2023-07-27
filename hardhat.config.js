@@ -4,12 +4,13 @@ require("dotenv-defaults").config();
 require("./tasks/transfer-ownership-admin");
 
 const LACHAIN_RPC_URL = process.env.LACHAIN_RPC_URL;
-const PRIVATE_KEYS_LACHAIN = process.env.PRIVATE_KEYS_LACHAIN;
 const LACHAIN_EXPLORER_URL = process.env.LACHAIN_EXPLORER_URL;
-const LACHAIN_TESTNET_RPC_URL = process.env.LACHAIN_TESTNET_RPC_URL;
-const LACHAIN_TESTNET_EXPLORER_URL = process.env.LACHAIN_TESTNET_EXPLORER_URL;
-const PRIVATE_KEYS_LATESTNET = process.env.PRIVATE_KEYS_LATESTNET;
+const LATESTNET_RPC_URL = process.env.LATESTNET_RPC_URL;
+const LATESTNET_EXPLORER_URL = process.env.LATESTNET_EXPLORER_URL;
+const ETHEREUM_RPC_URL = process.env.ETHEREUM_RPC_URL;
 const ETHERSCAN_KEY = process.env.ETHERSCAN_KEY;
+const POLYGON_RPC_URL = process.env.POLYGON_RPC_URL;
+const PRIVATE_KEYS = process.env.PRIVATE_KEYS;
 
 /** @type import('hardhat/config').HardhatUserConfig */
 module.exports = {
@@ -17,21 +18,35 @@ module.exports = {
   networks: {
     lachain: {
       url: LACHAIN_RPC_URL,
-      accounts: PRIVATE_KEYS_LACHAIN.split(","),
+      accounts: PRIVATE_KEYS.split(","),
       chainId: 274,
       gasPrice: 5000000000000,
     },
     latestnet: {
-      url: LACHAIN_TESTNET_RPC_URL,
-      accounts: PRIVATE_KEYS_LATESTNET.split(","),
+      url: LATESTNET_RPC_URL,
+      accounts: PRIVATE_KEYS.split(","),
       chainId: 418,
       gasPrice: 10000000,
+    },
+    ethereum: {
+      url: ETHEREUM_RPC_URL,
+      accounts: PRIVATE_KEYS.split(","),
+      chainId: 1,
+      gasPrice: 25000000000,
+    },
+    polygon: {
+      url: POLYGON_RPC_URL,
+      accounts: PRIVATE_KEYS.split(","),
+      chainId: 137,
+      gasPrice: 50000000000,
     },
   },
   etherscan: {
     apiKey: {
       lachain: ETHERSCAN_KEY,
       latestnet: ETHERSCAN_KEY,
+      ethereum: ETHERSCAN_KEY,
+      polygon: ETHERSCAN_KEY,
     },
     customChains: [
       {
@@ -46,8 +61,8 @@ module.exports = {
         network: "latestnet",
         chainId: 418,
         urls: {
-          apiURL: LACHAIN_TESTNET_EXPLORER_URL + "/api",
-          browserURL: LACHAIN_TESTNET_EXPLORER_URL,
+          apiURL: LATESTNET_EXPLORER_URL + "/api",
+          browserURL: LATESTNET_EXPLORER_URL,
         },
       },
     ],
