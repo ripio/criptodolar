@@ -4,6 +4,8 @@ Welcome to the official repository of Criptodolar, an open-source project aimed 
 
 Criptodolar is an initiative to provide an inflation-resistant monetary system to Latin America. By creating a low-cost, easy-to-transfer, stablecoin, we aim to help protect Latin American populations from the financial instability caused by inflation. Our objective is to empower them to manage and grow their financial resources in a safe and predictable manner.
 
+Learn more at [criptodolar.com](https://www.criptodolar.com/)
+
 ## Key Features
 
 - USD Stablecoin with ticker UXD
